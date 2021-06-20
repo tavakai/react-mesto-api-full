@@ -1,0 +1,9 @@
+.popup__title_align-left {
+    width: 358px;
+}
+
+@media screen and (max-width: 620px) {
+    .popup__title_align-left {
+        width: 200px;
+    }
+}

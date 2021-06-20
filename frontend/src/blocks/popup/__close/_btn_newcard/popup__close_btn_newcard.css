@@ -1,0 +1,6 @@
+@media screen and (max-width: 620px) {
+    .popup__close_btn_newcard {
+        top: -25px;
+        right: -25px;
+    }
+}

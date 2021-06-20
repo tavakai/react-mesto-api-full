@@ -1,0 +1,26 @@
+.popup__button {
+    border: none;
+    background-color: #000000;
+    border-radius: 2px;
+    width: 100%;
+    max-width: 358px;
+    height: 50.15px;
+    margin: 48px 0px 36.51px 0px;
+    color: #ffffff;
+    cursor: url('../../../images/cursor.svg'), auto;
+}
+
+.popup__button:hover {
+    opacity: .6;
+}
+
+.popup__button:disabled {
+    opacity: .1;
+}
+
+@media screen and (max-width: 620px) {
+    .popup__button {
+        width: 238px;
+        margin: 45px 0px 36.51px 0px;
+    }
+}

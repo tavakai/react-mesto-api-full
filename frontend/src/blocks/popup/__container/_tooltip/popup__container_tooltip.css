@@ -1,0 +1,5 @@
+.popup__container_tooltip {
+    position: relative;
+    flex-direction: column;
+    width: 430px;
+}

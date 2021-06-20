@@ -1,0 +1,7 @@
+.popup__message_current_error {
+    position: absolute;
+    left: 40px;
+    top: 235px;
+    color: red;
+    font-size: 12px;
+}

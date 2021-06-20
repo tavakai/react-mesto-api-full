@@ -1,0 +1,4 @@
+.card__button-like_active {
+    background-image: url(../../../../images/heart-black.svg);
+    background-repeat: no-repeat;
+}

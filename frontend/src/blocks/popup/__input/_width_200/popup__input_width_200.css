@@ -1,0 +1,5 @@
+@media screen and (max-width: 620px) {
+    .popup__input_width_200 {
+        width: 200px;
+    }
+}

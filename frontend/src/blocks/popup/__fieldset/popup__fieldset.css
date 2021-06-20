@@ -1,0 +1,13 @@
+.popup__fieldset {
+    border: none;
+    padding: 0;
+    box-sizing: border-box;
+    width: 430px;
+    text-align: center;
+}
+
+@media screen and (max-width: 620px) {
+    .popup__fieldset {
+        width: 282px;
+    }
+}

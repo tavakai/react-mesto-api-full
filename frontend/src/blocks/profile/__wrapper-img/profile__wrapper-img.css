@@ -1,0 +1,17 @@
+.profile__wrapper-img {
+  transition: .5s ease;
+  position: relative;
+  text-align: center;
+  border-radius: 50%;
+  cursor: pointer;
+  width: 120px;
+  height: 120px;
+}
+
+.profile__wrapper-img:hover .profile__img{
+  opacity: 0.2;
+}
+
+.profile__wrapper-img:hover .profile__wrapper-pencil{
+  opacity: 1;
+}

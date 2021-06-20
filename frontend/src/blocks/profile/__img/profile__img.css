@@ -1,0 +1,10 @@
+.profile__img {
+    max-width: 120px;
+    border-radius: 50%;
+    transition: visibility .1s linear,opacity .1s linear;
+    opacity: 1;
+    backface-visibility: hidden;
+    height: 120px;
+    object-fit: cover;
+    width: 120px;
+}

@@ -1,0 +1,10 @@
+.popup__card {
+    background-color: transparent;
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    vertical-align: middle;
+    justify-content: center;
+    position: relative;
+}

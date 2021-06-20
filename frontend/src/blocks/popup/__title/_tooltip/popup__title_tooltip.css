@@ -1,0 +1,6 @@
+.popup__title_tooltip {
+    margin: 32px 0 60px;
+    display: flex;
+    width: 358px;
+    text-align: center;
+}

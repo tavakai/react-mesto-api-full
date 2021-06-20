@@ -1,0 +1,16 @@
+.profile__current-info {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    margin: 16px 0px 0px 0px;
+    padding: 0;
+}
+
+@media screen and (max-width: 768px) {
+    .profile__current-info {
+        margin: 14px 0px 0px 0px;
+        font-size: 14px;
+        line-height: 17px;
+    }
+}
