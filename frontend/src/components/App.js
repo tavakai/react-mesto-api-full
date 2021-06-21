@@ -244,17 +244,17 @@ function App() {
       <div className="page">
         <BrowserRouter>
           <Switch>
-            <Route path="/sign-in">
+            <Route path="/signin">
               <Login loggedIn={loggedIn} handleSubmit={handleSubmitAuth} />
             </Route>
-            <Route path="/sign-up">
+            <Route path="/signup">
               <Register handleSubmit={handleSubmitReg} />
             </Route>
             <CurrentUserContext.Provider value={currentUser}>
               <Header
                 text="Выйти"
                 email={profileEmail}
-                page="/sign-in"
+                page="/signin"
                 signOut={signOut}
               />
               <ProtectedRoute
@@ -293,9 +293,9 @@ function App() {
             </CurrentUserContext.Provider>
             <Route exact path="/">
               {loggedIn ? (
-                <Redirect to="/sign-in" />
+                <Redirect to="/signin" />
               ) : (
-                <Redirect to="/sign-up" />
+                <Redirect to="/signup" />
               )}
             </Route>
           </Switch>
@@ -304,8 +304,8 @@ function App() {
             onClose={closeAllPopups}
             isOpen={isOpenTooltip}
           />
-          {loggedIn ? <Redirect to="/main" /> : <Redirect to="/sign-in" />}
-          {registered && <Redirect to="/sign-in" />}
+          {loggedIn ? <Redirect to="/main" /> : <Redirect to="/signin" />}
+          {registered && <Redirect to="/signin" />}
         </BrowserRouter>
       </div>
     </div>

@@ -72,7 +72,7 @@ class Api {
   }
   // Постановка лайка
   addLike(cardId) {
-    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
         method: 'PUT',
         headers: this.headers
       })
@@ -82,7 +82,7 @@ class Api {
   }
   // Снятие лайка
   removeLike(cardId) {
-    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
         method: 'DELETE',
         headers: this.headers
       })
@@ -110,7 +110,7 @@ class Api {
 }
 
 const api = new Api({
-  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-21',
+  baseUrl: 'https://api.mesto.tavakai.nomoredomains.monster',
   headers: {
     authorization: '7c009fa5-838d-4eed-9e1c-8223a7c4bd46',
     'Content-Type': 'application/json'

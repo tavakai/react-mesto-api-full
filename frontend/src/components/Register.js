@@ -30,8 +30,8 @@ const Register  = ({ handleSubmit }) => {
 
     return (
       <>
-      <Header page="/sign-in" text="Войти" />
-      <Route path="/sign-in">
+      <Header page="/signin" text="Войти" />
+      <Route path="/signin">
         <Login />
       </Route>
       <section className="sign">
@@ -83,7 +83,7 @@ const Register  = ({ handleSubmit }) => {
           </button>
         </form>
         <p className="sign__text">Уже зарегистрированы? 
-        <Link className="sign__text" to="/sign-in"> Войти</Link>
+        <Link className="sign__text" to="/signin"> Войти</Link>
         </p>
       </div>
     </section>
