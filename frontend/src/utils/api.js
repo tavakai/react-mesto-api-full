@@ -112,8 +112,7 @@ class Api {
 const api = new Api({
   baseUrl: 'https://api.mesto.tavakai.nomoredomains.monster',
   headers: {
-    authorization: '7c009fa5-838d-4eed-9e1c-8223a7c4bd46',
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
   }
 });
 

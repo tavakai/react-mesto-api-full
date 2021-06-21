@@ -27,7 +27,7 @@ const submit = (e) => {
 }
     return (
         <>
-        <Header page="/sign-up" text="Зарегистрироваться" />
+        <Header page="/signup" text="Зарегистрироваться" />
         <section className="sign">
         <div className="sign__container">
           <form
