@@ -10,7 +10,22 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const app = express();
 const { PORT = 3000 } = process.env;
-app.use(cors({ origin: '*' }));
+const options = {
+  origin: [
+    'http://localhost:3000',
+    'https://api.mesto.tavakai.nomoredomains.monster',
+    'https://mesto.tavakai.nomoredomains.monster',
+    'http://mesto.tavakai.nomoredomains.monster',
+    'http://api.mesto.tavakai.nomoredomains.monster',
+    'https://api.mesto.tavakai.nomoredomains.monster/users/me',
+  ],
+  methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+  preflightContinue: false,
+  optionsSuccessStatus: 204,
+  allowedHeaders: ['Content-Type', 'origin', 'Authorization'],
+  credentials: true,
+};
+app.use('*', cors(options));
 
 mongoose.connect('mongodb://localhost:27017/mestodb', {
   useNewUrlParser: true,
