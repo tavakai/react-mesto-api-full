@@ -14,7 +14,8 @@ class Api {
   // Получить данные пользователя
   getUserProfile() {
     return fetch(`${this._baseUrl}/users/me`, {
-        headers: this.headers
+        headers: this.headers,
+        credentials: 'include',
       })
       .then((res) => {
         return this._getResponseData(res)
