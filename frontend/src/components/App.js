@@ -79,7 +79,7 @@ function App() {
         history.push('/')
         setProfileEmail(res.email);
       })
-      .catch((err) => {
+      .catch(() => {
         setLoggedIn(false);
       });
       if (loggedIn) {
@@ -98,6 +98,7 @@ function App() {
         setLoggedIn(true);
         history.push('/')
     }
+    console.log('новая версия фронта');
   }, [history, loggedIn]);
 
   // Добавление новой карточки
