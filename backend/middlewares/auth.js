@@ -5,12 +5,12 @@ const { JWT_SECRET = 'dev-key' } = process.env;
 
 // eslint-disable-next-line consistent-return
 module.exports.auth = (req, res, next) => {
-  const { Cookie } = req.headers;
+  const cookie = req.cookies.jwt;
 
-  if (!Cookie || !Cookie.startsWith('jwt')) {
-    return res.status(401).send({ message: 'Вы не авторизованы' });
+  if (!cookie) {
+    next(new InvalidToken('Необходима авторизация'));
   }
-  const token = Cookie.replace('jwt=', '');
+  const token = cookie.replace('jwt', '');
   let payload;
   try {
     payload = jwt.verify(token, JWT_SECRET);

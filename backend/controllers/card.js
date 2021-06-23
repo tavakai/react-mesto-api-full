@@ -20,7 +20,7 @@ module.exports.createCards = (req, res, next) => {
 module.exports.getCards = (req, res, next) => {
   Card.find({})
     .orFail(new Error('NotFound'))
-    .then((item) => res.status(200).send({ data: item }))
+    .then((item) => res.status(200).send(item))
     .catch((err) => {
       if (err.message === 'NotFound') {
         next(new NotFoundError('Карточки не найдены'));
@@ -56,7 +56,7 @@ module.exports.addLike = (req, res, next) => {
     { new: true },
   )
     .orFail(new Error('NotFound'))
-    .then((item) => res.status(200).send({ data: item }))
+    .then((item) => res.status(200).send(item))
     .catch((err) => {
       if (err.message === 'NotFound') {
         next(new NotFoundError('Карточка не найденa'));
@@ -74,7 +74,7 @@ module.exports.removeLike = (req, res, next) => {
     { new: true },
   )
     .orFail(new Error('NotFound'))
-    .then((item) => res.status(200).send({ data: item }))
+    .then((item) => res.status(200).send(item))
     .catch((err) => {
       if (err.message === 'NotFound') {
         next(new NotFoundError('Карточка не найденa'));

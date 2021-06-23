@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://api.mesto.tavakai.nomoredomains.monster';
+export const BASE_URL = 'http://localhost:4000';
 
 export const register = (data) => {
   return fetch(`${BASE_URL}/signup`, {
@@ -37,24 +37,51 @@ export const authorize = (user) => {
   .then((response => response.json()))
   .then((data) => {
     if (data.token){
-      localStorage.setItem('jwt', data.token);
       return data;
     } 
   })
 };
 
-export const getContent = (token) => {
+export const isAuthorized = () => {
+  return fetch(`${BASE_URL}/signin`, {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    credentials: "include",
+  })
+  .then((response => response.json()))
+  .then((data) => {
+    if (data.token){
+      return data;
+    } 
+  })
+};
+
+export const getContent = () => {
   return fetch(`${BASE_URL}/users/me`, {
     method: 'GET',
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`,
     },
     credentials: "include",
   })
   .then(res => _getResponseData(res))
   .then(data => data)
+}
+
+export const logOut = () => {
+  return fetch(`${BASE_URL}`, {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+    },
+    credentials: "include",
+  })
+  .then(res => _getResponseData(res))
 }
 
 // Метод проверки ответа и преобразование в json

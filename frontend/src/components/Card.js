@@ -4,12 +4,12 @@ import React from 'react';
 const Card = ({card, onCardClick, onCardLike, onCardDelete }) => {
   const contextUser = React.useContext(CurrentUserContext);
   // Определяем, являемся ли мы владельцем текущей карточки
-  const isOwn = card.owner._id === contextUser._id;
+  const isOwn = card.owner === contextUser._id;
   const cardDeleteButtonClassName = (
   `card__delete ${isOwn ? 'card__delete_show' : ''}`
 );
   // Определяем, есть ли у карточки лайк, поставленный текущим пользователем
-  const isLiked = card.likes.some(i => i._id === contextUser._id);
+  const isLiked = card.likes.includes(contextUser._id);
   const cardLikeButtonClassName = (`card__button-like ${isLiked ? 'card__button-like_active' : ''}`)
 
     return (

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch, Redirect, useHistory } from "react-router-dom";
 import api from "../utils/api";
 import Header from "./Header";
 import Main from "./Main";
@@ -15,9 +15,7 @@ import ProtectedRoute from "./ProtectedRoute";
 import InfoTooltip from "./InfoTooltip";
 import * as auth from "../utils/Auth";
 
-// Тестовый комментарий для гита
 function App() {
-  // Состояния для карточки, попапов и юзера
   const [selectedCard, setSelectedCard] = useState(null);
   const [cards, setCards] = useState([]);
   const [isLoad, setIsLoad] = useState(false);
@@ -29,27 +27,10 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [registered, setRegistered] = useState(false);
   const [profileEmail, setProfileEmail] = useState("");
-
-  const tokenCheck = () => {
-    const jwt = localStorage.getItem("jwt");
-    if (jwt) {
-      // проверим токен
-      auth.getContent(jwt).then((res) => {
-        if (res) {
-          setLoggedIn(true);
-          setProfileEmail(res.data.email);
-          return true;
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-        setIsOpenTooltip(true);
-      });
-    }
-  };
+  const history = useHistory();
 
   function signOut() {
-    localStorage.removeItem("jwt");
+    auth.logOut();
     setLoggedIn(false);
   }
 
@@ -78,6 +59,7 @@ function App() {
         if(res) {
           setLoggedIn(true);
           setProfileEmail(data.email);
+          history.push("/main");
         } else {
           setIsOpenTooltip(true);
         }
@@ -88,36 +70,36 @@ function App() {
       });
   };
 
+//  Делаем запрос на получение данных пользователя и карточек
   useEffect(() => {
-    tokenCheck();
-  }, []);
-
-  // Делаем запрос на получение данных пользователя и карточек
-  useEffect(() => {
-    if (loggedIn) {
       api
       .getUserProfile()
       .then((res) => {
         setCurrentUser(res);
+        setLoggedIn(true);
+        history.push('/')
+        setProfileEmail(res.email);
       })
       .catch((err) => {
-        console.log(err); // выведем ошибку в консоль
+        setLoggedIn(false);
       });
-
+      if (loggedIn) {
       setIsLoad(true);
       api
         .getInitialCards()
         .then((values) => {
           setCards(values);
         })
-        .catch((err) => {
-          console.log(err); // выведем ошибку в консоль
+        .catch(() => {
+          setLoggedIn(false);
         })
         .finally(() => {
           setIsLoad(false);
         });
+        setLoggedIn(true);
+        history.push('/')
     }
-  }, [loggedIn]);
+  }, [history, loggedIn]);
 
   // Добавление новой карточки
   function handleAddPlaceSubmit(data, reset, onRequestEnd) {
@@ -155,7 +137,7 @@ function App() {
   // Функция постановки и снятия лайка
   function handleCardLike(selectedCard) {
     // Снова проверяем, есть ли уже лайк на этой карточке
-    const isLiked = selectedCard.likes.some((i) => i._id === currentUser._id);
+    const isLiked = selectedCard.likes.includes(currentUser._id);
     if (!isLiked) {
       // Отправляем запрос в API и получаем обновлённые данные карточки
       api
@@ -242,7 +224,6 @@ function App() {
   return (
     <div className="app">
       <div className="page">
-        <BrowserRouter>
           <Switch>
             <Route path="/signin">
               <Login loggedIn={loggedIn} handleSubmit={handleSubmitAuth} />
@@ -298,6 +279,9 @@ function App() {
                 <Redirect to="/signup" />
               )}
             </Route>
+            {/* <Route>
+              {loggedIn ? <Redirect to="/main" /> : <Redirect to="/signin" />}
+            </Route> */}
           </Switch>
           <InfoTooltip
             registered={registered}
@@ -305,8 +289,7 @@ function App() {
             isOpen={isOpenTooltip}
           />
           {loggedIn ? <Redirect to="/main" /> : <Redirect to="/signin" />}
-          {registered && <Redirect to="/signin" />}
-        </BrowserRouter>
+          {/* {registered && <Redirect to="/signin" />} */}
       </div>
     </div>
   );

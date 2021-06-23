@@ -45,6 +45,12 @@ module.exports.login = (req, res, next) => {
     .catch(next);
 };
 
+module.exports.logOut = (req, res, next) => {
+  res.clearCookie('jwt');
+  res.status(200).send({ message: 'You unauthorized' });
+  next();
+};
+
 // Получить всех пользователей
 module.exports.getUsers = (req, res, next) => {
   (async () => {
@@ -67,7 +73,7 @@ module.exports.getUserMe = (req, res, next) => {
     try {
       const user = await User.findOne({ _id })
         .orFail(new Error('NotFound'));
-      res.status(200).send({ user });
+      res.status(200).send(user);
     } catch (err) {
       if (err.message === 'NotFound') {
         next(new NotFoundError('Пользователь не найден'));
@@ -83,7 +89,7 @@ module.exports.getUserId = (req, res, next) => {
   (async () => {
     try {
       const user = await User.findById(req.params.id).orFail(new Error('NotFound'));
-      res.status(200).send({ user });
+      res.status(200).send(user);
     } catch (err) {
       if (err.message === 'NotFound') {
         next(new NotFoundError('Пользователь с таким ID не найден'));
