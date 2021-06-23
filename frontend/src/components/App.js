@@ -95,8 +95,6 @@ function App() {
         .finally(() => {
           setIsLoad(false);
         });
-        setLoggedIn(true);
-        history.push('/')
     }
   }, [history, loggedIn]);
 
