@@ -118,8 +118,9 @@ class Api {
 }
 
 const api = new Api({
-  baseUrl: 'https://mesto.tavakai.nomoredomains.monster',
+  baseUrl: 'https://api.mesto.tavakai.nomoredomains.monster',
   headers: {
+    'Accept': 'application/json',
     'Content-Type': 'application/json',
   }
 });

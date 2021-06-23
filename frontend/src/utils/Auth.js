@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://mesto.tavakai.nomoredomains.monster';
+export const BASE_URL = 'https://api.mesto.tavakai.nomoredomains.monster';
 
 export const register = (data) => {
   return fetch(`${BASE_URL}/signup`, {
@@ -41,36 +41,6 @@ export const authorize = (user) => {
     } 
   })
 };
-
-export const isAuthorized = () => {
-  return fetch(`${BASE_URL}/signin`, {
-    method: 'GET',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    credentials: "include",
-  })
-  .then((response => response.json()))
-  .then((data) => {
-    if (data.token){
-      return data;
-    } 
-  })
-};
-
-export const getContent = () => {
-  return fetch(`${BASE_URL}/users/me`, {
-    method: 'GET',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-    },
-    credentials: "include",
-  })
-  .then(res => _getResponseData(res))
-  .then(data => data)
-}
 
 export const logOut = () => {
   return fetch(`${BASE_URL}`, {

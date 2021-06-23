@@ -30,10 +30,6 @@ const options = {
     'https://api.mesto.tavakai.nomoredomains.monster',
     'https://mesto.tavakai.nomoredomains.monster',
     'http://mesto.tavakai.nomoredomains.monster',
-    'https://mesto.tavakai.nomoredomains.monster/signin',
-    'http://mesto.tavakai.nomoredomains.monster/signin',
-    'https://mesto.tavakai.nomoredomains.monster/signup',
-    'http://mesto.tavakai.nomoredomains.monster/signup',
     'http://api.mesto.tavakai.nomoredomains.monster',
     'https://api.mesto.tavakai.nomoredomains.monster/users/me',
   ],
@@ -57,10 +53,6 @@ app.use(requestLogger);
 app.post('/signin', loginValidation, login);
 app.post('/signup', userValidation, createUser);
 app.use(router);
-app.use('/', () => {
-  // eslint-disable-next-line no-console
-  console.log('новая версия бэка');
-});
 app.use(errorLogger);
 // eslint-disable-next-line no-unused-vars
 app.use(serverError);

@@ -98,7 +98,6 @@ function App() {
         setLoggedIn(true);
         history.push('/')
     }
-    console.log('новая версия фронта');
   }, [history, loggedIn]);
 
   // Добавление новой карточки
