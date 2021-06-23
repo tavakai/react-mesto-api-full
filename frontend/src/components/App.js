@@ -59,7 +59,6 @@ function App() {
         if(res) {
           setLoggedIn(true);
           setProfileEmail(data.email);
-          history.push("/main");
         } else {
           setIsOpenTooltip(true);
         }
