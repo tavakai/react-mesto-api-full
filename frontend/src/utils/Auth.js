@@ -1,4 +1,4 @@
-export const BASE_URL = 'http://localhost:4000';
+export const BASE_URL = 'https://mesto.tavakai.nomoredomains.monster';
 
 export const register = (data) => {
   return fetch(`${BASE_URL}/signup`, {
