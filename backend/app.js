@@ -11,7 +11,7 @@ const { serverError } = require('./middlewares/errors');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const app = express();
-const { PORT = 4000 } = process.env;
+const { PORT = 3000 } = process.env;
 const options = {
   origin: [
     'http://localhost:3000',

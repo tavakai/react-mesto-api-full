@@ -118,7 +118,7 @@ class Api {
 }
 
 const api = new Api({
-  baseUrl: 'http://localhost:4000',
+  baseUrl: 'https://api.mesto.tavakai.nomoredomains.monster',
   headers: {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
