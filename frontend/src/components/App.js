@@ -43,6 +43,7 @@ function App() {
         if (res.status === 201) {
           setRegistered(true);
           setIsOpenTooltip(true);
+          history.push('/signin')
         }
         return res.json();
       })
@@ -63,26 +64,27 @@ function App() {
           setIsOpenTooltip(true);
         }
       })
-      .catch((err) => {
+      .catch(() => {
         setLoggedIn(false);
-        console.log(`Ошибка: ${err}`);
       });
   };
 
 //  Делаем запрос на получение данных пользователя и карточек
   useEffect(() => {
+    // if (loggedIn) {
       api
       .getUserProfile()
       .then((res) => {
         setCurrentUser(res);
         setLoggedIn(true);
-        history.push('/')
+        history.push('/');
         setProfileEmail(res.email);
       })
       .catch(() => {
         setLoggedIn(false);
+        history.push('/signin')
       });
-      if (loggedIn) {
+
       setIsLoad(true);
       api
         .getInitialCards()
@@ -90,12 +92,12 @@ function App() {
           setCards(values);
         })
         .catch(() => {
-          setLoggedIn(false);
+          console.log(`Вы не авторизованы`);
         })
         .finally(() => {
           setIsLoad(false);
         });
-    }
+    // }
   }, [history, loggedIn]);
 
   // Добавление новой карточки

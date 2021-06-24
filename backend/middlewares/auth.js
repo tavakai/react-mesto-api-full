@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const { InvalidToken } = require('./errors');
 
-const { JWT_SECRET = 'dev-key' } = process.env;
+const { JWT_SECRET = 'dev-key', NODE_ENV } = process.env;
 
 // eslint-disable-next-line consistent-return
 module.exports.auth = (req, res, next) => {
@@ -13,7 +13,7 @@ module.exports.auth = (req, res, next) => {
   const token = cookie.replace('jwt', '');
   let payload;
   try {
-    payload = jwt.verify(token, JWT_SECRET);
+    payload = jwt.verify(token, NODE_ENV === 'production' ? JWT_SECRET : 'dev-key');
   } catch (err) {
     if (err.name === 'JsonWebTokenError') {
       next(new InvalidToken('Некорректный токен'));

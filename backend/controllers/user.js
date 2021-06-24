@@ -7,7 +7,7 @@ const {
   ConflictError,
 } = require('../middlewares/errors');
 
-const { JWT_SECRET = 'dev-key' } = process.env;
+const { JWT_SECRET = 'dev-key', NODE_ENV } = process.env;
 
 module.exports.login = (req, res, next) => {
   const { email, password } = req.body;
@@ -31,7 +31,7 @@ module.exports.login = (req, res, next) => {
             {
               _id: user._id,
             },
-            JWT_SECRET,
+            NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
             { expiresIn: '7d' },
           );
           res.cookie('jwt', token, {
