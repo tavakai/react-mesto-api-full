@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
+const rateLimit = require('express-rate-limit');
 const router = require('./routers/index');
 const { login, createUser } = require('./controllers/user');
 const { userValidation, loginValidation } = require('./middlewares/validate');
@@ -28,6 +29,10 @@ const options = {
   credentials: true,
 };
 app.use('*', cors(options));
+const apiLimiter = rateLimit({
+  windowMs: 10 * 60 * 1000, // 10 minutes
+  max: 100, // limit each IP to 100 requests per windowMs
+});
 
 mongoose.connect('mongodb://localhost:27017/mestodb', {
   useNewUrlParser: true,
@@ -35,6 +40,7 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
   useFindAndModify: false,
   useUnifiedTopology: true,
 });
+app.use('/', apiLimiter);
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(requestLogger);
