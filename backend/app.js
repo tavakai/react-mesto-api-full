@@ -40,10 +40,10 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
   useFindAndModify: false,
   useUnifiedTopology: true,
 });
+app.use(requestLogger);
 app.use('/', apiLimiter);
 app.use(bodyParser.json());
 app.use(cookieParser());
-app.use(requestLogger);
 app.get('/crash-test', () => {
   setTimeout(() => {
     throw new Error('Сервер сейчас упадёт');
