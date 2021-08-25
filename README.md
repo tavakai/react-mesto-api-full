@@ -5,4 +5,4 @@
 
 **Ссылка на проект**
 
-- [Ссылка на проект](https://mesto.tavakai.nomoredomains.monster/)
+- [Ссылка на проект](https://mesto.tavakai.nomoredomains.work/)

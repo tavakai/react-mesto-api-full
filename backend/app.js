@@ -16,11 +16,11 @@ const { PORT = 3000 } = process.env;
 const options = {
   origin: [
     'http://localhost:3000',
-    'https://api.mesto.tavakai.nomoredomains.monster',
-    'https://mesto.tavakai.nomoredomains.monster',
-    'http://mesto.tavakai.nomoredomains.monster',
-    'http://api.mesto.tavakai.nomoredomains.monster',
-    'https://api.mesto.tavakai.nomoredomains.monster/users/me',
+    'https://mesto.tavakai.nomoredomains.work',
+    'https://mesto.tavakaiam.nomoredomains.work',
+    'http://mesto.tavakaiam.nomoredomains.work',
+    'http://mesto.tavakai.nomoredomains.work',
+    'https://mesto.tavakai.nomoredomains.work/users/me',
   ],
   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
   preflightContinue: false,

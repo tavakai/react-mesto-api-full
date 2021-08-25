@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://api.mesto.tavakai.nomoredomains.monster';
+export const BASE_URL = 'https://mesto.tavakai.nomoredomains.work';
 
 export const register = (data) => {
   return fetch(`${BASE_URL}/signup`, {
